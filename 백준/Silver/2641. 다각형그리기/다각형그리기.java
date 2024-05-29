@@ -17,7 +17,7 @@ import java.util.StringTokenizer;
  * 서로 역방향인데 이것도 체크를 해야되어서 2N이다.
  * 여기서 또 주의해야할 점은, 역방향은 숫자도 반전하고 순서도 반전을 해야한다는 점이다.
  *
- * O(N * 2N * M) -> 50 * 50 * 100 => 250,000 이므로 할 수 있을 것 같다.
+ * O(N * 2N * M) -> 50 * 100 * 100 => 500,000 이므로 할 수 있을 것 같다.
  */
 public class Main {
     public static void main(String[] args) throws IOException {
