@@ -8,13 +8,17 @@ public class Main {
 
         int N = Integer.parseInt(br.readLine());
         char[] chars = br.readLine().toCharArray();
-        long sum = 0;
+        long mod = 1234567891L;
+        long sum = 0L;
+        long r = 1L;
         for (int i = 0; i < N; i++) {
             long c = (long) (chars[i] - 96);
-            sum += (long) (c * Math.pow(31, i));
+            sum += (long) (c * r) % mod;
+            r *= 31;
+            r %= mod;
         }
 
-        sum %= 1234567891L;
+        sum %= mod;
 
         bw.write(sum +"\n");
         bw.flush();
