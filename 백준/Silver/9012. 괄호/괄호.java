@@ -1,31 +1,45 @@
 import java.io.*;
-import java.util.ArrayDeque;
-import java.util.StringTokenizer;
+import java.util.*;
 
-public class Main {
+public class Main{
+    
+    public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    public static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+    
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
         int T = Integer.parseInt(br.readLine());
-        for (int i = 0; i < T; i++) {
-            char[] chars = br.readLine().toCharArray();
-            ArrayDeque<Character> deque = new ArrayDeque<>();
-            for (char c : chars) {
-                if(deque.isEmpty()) deque.addLast(c);
-                else {
-                    char cc = deque.getLast();
-                    if(cc == '(' && c == ')') deque.removeLast();
-                    else deque.addLast(c);
-                }
-            }
-            if(deque.isEmpty()) bw.write("YES\n");
-            else bw.write("NO\n");
+        while(T-->0){
+            test();
         }
 
         bw.flush();
         bw.close();
         br.close();
     }
+    
+    public static void test() throws IOException{
+        char[] chars = br.readLine().toCharArray();
+        Deque<Character> stack = new ArrayDeque<>();
+        
+        for(char c : chars){
+            if(stack.isEmpty()){
+                stack.push(c);
+                continue;
+            }
+            
+            char pre = stack.peek();
+            if(pre == '(' && c == ')'){
+                stack.pop();
+                continue;
+            }
+            
+            stack.push(c);
+        }
+        
+        if(stack.isEmpty()){
+            bw.write("YES\n");
+        }else{
+            bw.write("NO\n");
+        }
+    }
 }
-
