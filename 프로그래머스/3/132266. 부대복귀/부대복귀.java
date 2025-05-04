@@ -22,7 +22,7 @@ class Solution {
         });
         
         pq.offer(new int[]{destination, 0});
-        dis[destination] = 0;
+        //dis[destination] = 0;
         
         while(!pq.isEmpty()){
             int[] cur = pq.poll();
@@ -31,8 +31,8 @@ class Solution {
             // 지금까지의 거리
             int cur_dis = cur[1];
             
-            // 이미 해당 노드를 더 빠르게 온 적이 있다면 스킵
-            if(dis[cur_node] < cur_dis) continue;
+            if(dis[cur_node] <= cur_dis) continue;
+            dis[cur_node] = cur_dis;
             
             for(int next_node : adj[cur_node]){
                 // 이 문제에서는 거리가 없으므로 1로 처리
@@ -41,8 +41,8 @@ class Solution {
                 int next_dis = cur_dis + 1;
                 
                 // 다음 노드를 더 빠르게 간 적이 있으면 스킵
-                if(dis[next_node] < next_dis) continue;
-                dis[next_node] = next_dis;
+                //if(dis[next_node] <= next_dis) continue;
+                //dis[next_node] = next_dis;
                 pq.offer(new int[]{next_node, next_dis});
             }
         }
